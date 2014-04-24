@@ -55,7 +55,8 @@
     "uglify-js": "^2.4.12",
     "underscore": "^1.6.0",
     "validator": "^3.9.0",
-    "dotenv": "~0.2.8"
+    "dotenv": "~0.2.8",
+    "twiliosig": "0.0.3"
   },
   "devDependencies": {
     "mocha": "^1.18.2",
