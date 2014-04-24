@@ -1,6 +1,6 @@
 module.exports = {
 
-  db: process.env.MONGODB|| 'mongodb://localhost:27017/test',
+  db: process.env.MONGODB|| 'mongodb://localhost:27017/hack-votr',
 
   sessionSecret: process.env.SESSION_SECRET || 'Your Session Secret goes here',
 
@@ -64,8 +64,8 @@ module.exports = {
   },
 
   twilio: {
-    sid: process.env.TWILIO_SID || 'AC92e12ae9029e8babae0d9fbb4079b1c1',
-    token: process.env.TWILIO_TOKEN || '2470e51c86e40ac49bbb08c00c00539d'
+    sid: process.env.TWILIO_SID || '',
+    token: process.env.TWILIO_TOKEN || ''
   },
 
   clockwork: {
