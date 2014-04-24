@@ -30,13 +30,6 @@ module.exports = {
     passReqToCallback: true
   },
 
-  instagram: {
-    clientID: process.env.INSTAGRAM_ID || '9f5c39ab236a48e0aec354acb77eee9b',
-    clientSecret: process.env.INSTAGRAM_SECRET || '5920619aafe842128673e793a1c40028',
-    callbackURL: '/auth/instagram/callback',
-    passReqToCallback: true
-  },
-
   github: {
     clientID: process.env.GITHUB_ID || 'cb448b1d4f0c743a1e36',
     clientSecret: process.env.GITHUB_SECRET || '815aa4606f476444691c5f1c16b9c70da6714dc6',
