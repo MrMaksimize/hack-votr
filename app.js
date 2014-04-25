@@ -115,7 +115,7 @@ app.use(function(req, res, next) {
 /**
  * Application routes.
  */
-
+// TODO http://scotch.io/bar-talk/expressjs-4-0-new-features-and-upgrading-from-3-0
 app.get('/', homeController.index);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
