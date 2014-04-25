@@ -1,7 +1,20 @@
 var chai = require('chai');
 var should = chai.should();
 var User = require('../models/User');
+var Event = require('../models/Event');
+var mocks = require('../helpers/mocks');
 
+describe('Event Model', function() {
+  it('should create a new Event', function(done) {
+    var eventInstance = new Event(mocks.events.simple);
+    // Save Event.
+    eventInstance.save(function(err) {
+      if (err) return done(err);
+      done();
+    })
+
+  });
+});
 describe('User Model', function() {
   it('should create a new user', function(done) {
     var user = new User({
