@@ -8,4 +8,4 @@ var voteSchema = new mongoose.Schema({
 
 var voteModel = mongoose.model('Vote', voteSchema, 'events_votes_collection');
 
-module.exports = eventModel;
+module.exports = voteModel;
