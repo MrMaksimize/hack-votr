@@ -1,17 +1,16 @@
-var Event = require('../models/Event');
+var Event = require('../models/Vote');
 
 var routes = {};
 var methods = {};
 
 /*********** Routes **********/
-
-/**
- * GET /events
- * Events page.
- */
-routes.index = function(req, res) {
-  res.end('test');
+routes.createVote = function(req, res, next) {
+  // Validate twilio signature
+  // Find the event this vote was cast for.
+  // Save the vote.
+  // If we have an error, explode.
 };
+
 
 /*********** Methods **********/
 

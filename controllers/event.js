@@ -13,7 +13,7 @@ routes.index = function(req, res) {
   res.end('test');
 };
 
-routes.eventSingle = function(req, res) {
+routes.getEvent = function(req, res) {
   var event_short = req.params.eventshort;
   console.log(event_short);
   Event.findOne({ shortName: event_short }).lean().exec(function(err, eventObject){
