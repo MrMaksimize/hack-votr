@@ -59,7 +59,6 @@
     "twiliosig": "0.0.3",
     "moment": "~2.6.0",
     "string": "~1.8.1",
-    "mongojs": "~0.12.1"
   },
   "devDependencies": {
     "mocha": "^1.18.2",
