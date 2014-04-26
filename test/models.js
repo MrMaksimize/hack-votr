@@ -12,7 +12,6 @@ describe('Event Model', function() {
       if (err) return done(err);
       done();
     })
-
   });
 });
 describe('User Model', function() {

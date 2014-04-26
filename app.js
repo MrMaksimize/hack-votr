@@ -3,6 +3,8 @@
  */
 
 var _ = require('underscore');
+var moment = require('moment');
+var S = require('string');
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var compress = require('compression');
@@ -28,7 +30,6 @@ dotenv.load();
 /**
  * Load controllers.
  */
-
 var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
@@ -118,7 +119,8 @@ app.use(function(req, res, next) {
  */
 // TODO http://scotch.io/bar-talk/expressjs-4-0-new-features-and-upgrading-from-3-0
 app.get('/', homeController.index);
-app.get('/events', eventController.index);
+app.get('/events', eventController.routes.index);
+app.get('/events/:eventshort', eventController.routes.eventSingle);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);

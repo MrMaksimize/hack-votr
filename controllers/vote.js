@@ -13,15 +13,6 @@ routes.index = function(req, res) {
   res.end('test');
 };
 
-routes.eventSingle = function(req, res) {
-  var event_short = req.params.eventshort;
-  console.log(event_short);
-  Event.findOne({ shortName: event_short }).lean().exec(function(err, eventObject){
-    console.log(eventObject);
-    res.send(eventObject);
-  });
-}
-
 /*********** Methods **********/
 
 

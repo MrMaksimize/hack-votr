@@ -56,7 +56,10 @@
     "underscore": "^1.6.0",
     "validator": "^3.9.0",
     "dotenv": "~0.2.8",
-    "twiliosig": "0.0.3"
+    "twiliosig": "0.0.3",
+    "moment": "~2.6.0",
+    "string": "~1.8.1",
+    "mongojs": "~0.12.1"
   },
   "devDependencies": {
     "mocha": "^1.18.2",
