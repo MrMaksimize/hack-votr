@@ -4,6 +4,7 @@ mocks.events = {
     name: 'Event 2',
     type: 'event',
     shortName: 'event_2',
+    phoneNumber: '+19164263342',
     state: true,
     votingOptions: [{
       id: 0, // Number of vote option

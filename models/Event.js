@@ -5,6 +5,7 @@ var eventSchema = new mongoose.Schema({
   name: String,
   type: { type: String, lowercase: true },
   shortName: { type: String, unique: true, lowercase: true },
+  phoneNumber: { type: String, unique: true },
   state: Boolean,
   // TODO phone # per event.
   votingOptions: [{
