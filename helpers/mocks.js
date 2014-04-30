@@ -4,7 +4,7 @@ mocks.events = {
     name: 'Event 2',
     type: 'event',
     shortName: 'event_2',
-    votingIsOpen: true,
+    state: true,
     votingOptions: [{
       id: 0, // Number of vote option
       name: 'No', // Name of vote option to display

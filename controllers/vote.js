@@ -9,6 +9,7 @@ routes.createVote = function(req, res, next) {
   // Find the event this vote was cast for.
   // Save the vote.
   // If we have an error, explode.
+  res.send('Success');
 };
 
 

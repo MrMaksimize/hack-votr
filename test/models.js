@@ -2,18 +2,32 @@ var chai = require('chai');
 var should = chai.should();
 var User = require('../models/User');
 var Event = require('../models/Event');
+var Vote = require('../models/Vote');
 var mocks = require('../helpers/mocks');
 
 describe('Event Model', function() {
   it('should create a new Event', function(done) {
     var eventInstance = new Event(mocks.events.simple);
+    eventInstance.shortName = eventInstance.shortName + Math.floor(Math.random()*11);
     // Save Event.
     eventInstance.save(function(err) {
       if (err) return done(err);
       done();
     })
   });
+
+  it('should NOT allow to create a new Event with same short code', function(done) {
+    var eventInstance = new Event(mocks.events.simple);
+    eventInstance.shortName = eventInstance.shortName;
+    // Save Event.
+    eventInstance.save(function(err) {
+      if (err) err.code.should.equal(11000);
+      done();
+    })
+  });
+
 });
+
 describe('User Model', function() {
   it('should create a new user', function(done) {
     var user = new User({
