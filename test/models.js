@@ -18,12 +18,15 @@ describe('Event Model', function() {
 
   it('should NOT allow to create a new Event with same short code', function(done) {
     var eventInstance = new Event(mocks.events.simple);
-    eventInstance.shortName = eventInstance.shortName;
+    eventInstance.shortName;
     // Save Event.
     eventInstance.save(function(err) {
       if (err) err.code.should.equal(11000);
+    });
+    eventInstance.save(function(err) {
+      if (err) err.code.should.equal(11000);
       done();
-    })
+    });
   });
 
 });

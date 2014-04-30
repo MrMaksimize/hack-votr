@@ -8,11 +8,11 @@ mocks.events = {
     state: true,
     votingOptions: [{
       id: 0, // Number of vote option
-      name: 'No', // Name of vote option to display
+      name: 'no', // Name of vote option to display
     },
     {
       id: 1, // Number of vote option
-      name: 'Yes', // Name of vote option to display
+      name: 'yes', // Name of vote option to display
     }]
   }
 };

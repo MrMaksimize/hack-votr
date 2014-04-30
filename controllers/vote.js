@@ -13,11 +13,28 @@ routes.createVote = function(req, res, next) {
   // Save the vote.
   // If we have an error, explode.
   // Check sig should be off in development.
-  if (process.env.TWILIO_CHECK_SIG == true && !twiliosig.valid(req, process.env.TWILIO_ACCOUNT_SID)) {
+  if (process.env.NODE_ENV == 'production' && !twiliosig.valid(req, process.env.TWILIO_ACCOUNT_SID)) {
     res.send(401, 'Invalid Signature');
   }
-  res.send('OK');
   // Look Up Event by Phone Number
+
+  var vote = new Vote({
+    voterPhoneNumber: req.body.From,
+    eventPhoneNumber: req.body.To,
+    voteBody: req.body.Body
+  });
+  console.log('Vote Created.  Saving.');
+
+  vote.save(function(err, savedVote) {
+    console.log('Saving Done');
+    console.log('VOTE');
+    console.log(savedVote);
+
+    if (err) {
+      res.send(err);
+    }
+    res.send(savedVote);
+  });
 
 };
 
