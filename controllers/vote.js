@@ -31,9 +31,9 @@ routes.createVote = function(req, res, next) {
     console.log(savedVote);
 
     if (err) {
-      res.send(err);
+      return res.send(503, err.message);
     }
-    res.send(savedVote);
+    return res.send(savedVote);
   });
 
 };

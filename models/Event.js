@@ -18,7 +18,7 @@ var eventSchema = new mongoose.Schema({
 
 eventSchema.pre('save', function(next) {
   this._id = 'event:' + this.shortName;
-  next();
+  return next();
 });
 
 if (process.env.NODE_ENV == 'production') {
