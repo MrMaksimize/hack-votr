@@ -20,10 +20,10 @@ describe('Event Model', function() {
     var duplicatedEvent = new Event(mocks.events.simple);
     // Save Event.
     eventInstance.save(function(err) {
-      err.code.should.equal(11000);
+      if(err) err.code.should.equal(11000);
     });
     duplicatedEvent.save(function(err) {
-      err.code.should.equal(11000);
+      if (err) err.code.should.equal(11000);
       done();
     });
   });
