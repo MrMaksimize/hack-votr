@@ -18,7 +18,10 @@ routes.getEvent = function(req, res) {
   console.log(event_short);
   Event.findOne({ shortName: event_short }).lean().exec(function(err, eventObject){
     console.log(eventObject);
-    res.send(eventObject);
+    res.render('event', {
+      title: eventObject.name,
+      eventShort: eventObject.shortName
+    });
   });
 }
 

@@ -40,7 +40,7 @@ var createVote = function(req, res, next) {
       console.log(err);
       return res.send(503, err.message);
     }
-    //io.sockets.in(savedVote.eventShortName).emit('vote', savedVote);
+    io.sockets.in(savedVote.eventShortName).emit('vote', savedVote);
     return res.send(savedVote);
 
   });

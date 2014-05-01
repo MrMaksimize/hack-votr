@@ -11,6 +11,9 @@ html
     != css('styles')
     != js('application')
     script(src='/socket.io/socket.io.js?v=#{cacheBuster}')
+if eventShort
+  body(data-event="#{eventShort}")
+else
   body
     #wrap
       include partials/navigation
