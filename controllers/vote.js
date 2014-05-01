@@ -18,9 +18,6 @@ var createVote = function(req, res, next) {
     return res.send(401, 'Invalid Signature');
   }
 
-  console.log('OP')
-  console.log(io);
-
   // Create A Stub Vote.
   var vote = new Vote({
     voterPhoneNumber: req.body.From,

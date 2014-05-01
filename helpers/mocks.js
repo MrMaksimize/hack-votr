@@ -1,8 +1,11 @@
+var S = require('string');
+
 var mocks = {};
 
 function getUniqueStringOrNum(base) {
   if (!base) base = '+1';
-  return base + Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000;
+  var string = base + Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000;
+  return string.substring(0, 12);
 }
 
 mocks.votes = {
