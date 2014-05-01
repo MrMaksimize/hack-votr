@@ -2,7 +2,7 @@ var request = require('supertest');
 var app = require('../app.js');
 var webhookMocks = require('../helpers/webhookMocks');
 
-describe('POST /votes/sms', function() {
+/*describe('POST /votes/sms', function() {
   it('should return 200 OK', function(done) {
     var smsWebhook = webhookMocks.twilioSMS;
     request(app)
@@ -13,7 +13,7 @@ describe('POST /votes/sms', function() {
       .set('X-Twilio-Signature', smsWebhook.headers.XTwilioSignature)
       .expect(200, done);
   });
-});
+});*/
 
 describe('GET /', function() {
   it('should return 200 OK', function(done) {

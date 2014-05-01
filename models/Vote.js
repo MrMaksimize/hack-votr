@@ -23,23 +23,23 @@ voteSchema.pre('save', function(next) {
   var vote = this;
   Event.findOne({ type: 'event', phoneNumber: this.eventPhoneNumber }).lean().exec(function(err, foundEvent) {
     if (err) {
+      console.log('Undetected');
       console.log(err);
       return next(err);
     }
     if (!foundEvent || foundEvent == null) {
-      err = new Error('Not Found');
+      err = new Error('No event matches');
       return next(err);
     }
     vote.event_id = foundEvent._id;
     vote._id = 'vote:' + foundEvent._id + ':' + vote.voterPhoneNumber;
     var selectedOption = getSelectedVoteOption(vote, foundEvent);
-    if (selectedOption.length == 0) {
-      console.log('No Option Found');
-      err = new Error('No Option Matches');
+    if (_.isEmpty(selectedOption)) {
+      err = new Error('No option matches');
       return next(err);
     }
     vote.chosenOption = selectedOption;
-    next();
+    return next();
   });
 });
 
