@@ -14,6 +14,7 @@ var logger = require('morgan');
 var errorHandler = require('errorhandler');
 var csrf = require('lusca').csrf();
 var methodOverride = require('method-override');
+var socketio = require('socket.io')
 
 var MongoStore = require('connect-mongo')({ session: session });
 var flash = require('express-flash');
@@ -35,7 +36,6 @@ var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 var eventController = require('./controllers/event');
-var voteController = require('./controllers/vote');
 
 /**
  * API keys + Passport configuration.
@@ -115,6 +115,8 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+
 /**
  * Application routes.
  */
@@ -122,7 +124,6 @@ app.use(function(req, res, next) {
 app.get('/', homeController.index);
 app.get('/events', eventController.routes.index);
 app.get('/events/:eventshort', eventController.routes.getEvent);
-app.post('/votes/sms', voteController.routes.createVote);
 
 // Stock
 app.get('/login', userController.getLogin);
@@ -199,18 +200,40 @@ app.get('/auth/venmo/callback', passport.authorize('venmo', { failureRedirect: '
 });
 
 /**
+ * Start Express server.
+ */
+
+var server = app.listen(app.get('port'), function() {
+  console.log("✔ Express server listening on port %d in %s mode", app.get('port'), app.get('env'));
+});
+
+/**
+ * Socket IO
+ */
+
+var io = socketio.listen(server);
+
+io.configure('development', function(){
+  io.set('log level', 1);
+});
+
+io.sockets.on('connection', function(socket) {
+  console.log('Connection Made');
+  socket.on('event', function(event) {
+    socket.join(event);
+  });
+});
+
+// Clean up this bullshit @TODO
+require('./controllers/vote')(app, io);
+
+/**
  * 500 Error Handler.
  * As of Express 4.0 it must be placed at the end of all routes.
  */
 
 app.use(errorHandler());
 
-/**
- * Start Express server.
- */
 
-app.listen(app.get('port'), function() {
-  console.log("✔ Express server listening on port %d in %s mode", app.get('port'), app.get('env'));
-});
 
 module.exports = app;

@@ -2,17 +2,24 @@ var twiliosig = require('twiliosig');
 
 var Event = require('../models/Event');
 var Vote = require('../models/Vote');
+var io = {};
 
-var routes = {};
-var methods = {};
+module.exports = function(app, socketio) {
+  console.log('Exports');
+  io = socketio;
+  app.post('/votes/sms', createVote);
+}
 
-/*********** Routes **********/
-routes.createVote = function(req, res, next) {
+
+var createVote = function(req, res, next) {
   // If we have an error, explode.
   // Check sig should be off in development.
   if (process.env.NODE_ENV == 'production' && !twiliosig.valid(req, process.env.TWILIO_ACCOUNT_SID)) {
     return res.send(401, 'Invalid Signature');
   }
+
+  console.log('OP')
+  console.log(io);
 
   // Create A Stub Vote.
   var vote = new Vote({
@@ -29,14 +36,12 @@ routes.createVote = function(req, res, next) {
     if (err) {
       return res.send(503, err.message);
     }
+    io.sockets.in(savedVote.eventShortName).emit('vote', savedVote);
     return res.send(savedVote);
-  });
 
+  });
 };
 
 
-/*********** Methods **********/
 
 
-exports.routes = routes;
-exports.methods = methods;

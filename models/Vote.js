@@ -13,6 +13,7 @@ var voteSchema = new mongoose.Schema({
     name: String
   },
   event_id: String,
+  eventShortName: String,
   voterPhoneNumber: String,
   eventPhoneNumber: String
 });
@@ -32,6 +33,7 @@ voteSchema.pre('save', function(next) {
       return next(err);
     }
     vote.event_id = foundEvent._id;
+    vote.eventShortName = foundEvent.shortName;
     vote._id = 'vote:' + foundEvent._id + ':' + vote.voterPhoneNumber;
     var selectedOption = getSelectedVoteOption(vote, foundEvent);
     if (_.isEmpty(selectedOption)) {
