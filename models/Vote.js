@@ -60,6 +60,6 @@ if (process.env.NODE_ENV == 'production') {
   voteSchema.set('autoIndex', false);
 }
 
-var voteModel = mongoose.model('Vote', voteSchema, 'events_votes_collection');
+var voteModel = mongoose.model('Vote', voteSchema);
 
 module.exports = voteModel;

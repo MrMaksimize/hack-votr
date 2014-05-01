@@ -17,6 +17,7 @@ var eventSchema = new mongoose.Schema({
 });
 
 eventSchema.pre('save', function(next) {
+  // @TODO enforce uniqueness of event here, not on the schema because of collision with vote.
   this._id = 'event:' + this.shortName;
   return next();
 });
@@ -25,6 +26,6 @@ if (process.env.NODE_ENV == 'production') {
   eventSchema.set('autoIndex', false);
 }
 
-var eventModel = mongoose.model('Event', eventSchema, 'events_votes_collection');
+var eventModel = mongoose.model('Event', eventSchema);
 
 module.exports = eventModel;

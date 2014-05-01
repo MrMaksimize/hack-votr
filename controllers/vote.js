@@ -18,9 +18,15 @@ var createVote = function(req, res, next) {
     return res.send(401, 'Invalid Signature');
   }
 
+  fromNum = req.body.From;
+
+  // For Testing
+  if (process.env.NODE_ENV == 'development' && fromNum == '+17736777755') {
+    fromNum = ('+1' + Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000).substring(0, 12);
+  }
   // Create A Stub Vote.
   var vote = new Vote({
-    voterPhoneNumber: req.body.From,
+    voterPhoneNumber: fromNum,
     eventPhoneNumber: req.body.To,
     voteBody: req.body.Body
   });
@@ -31,9 +37,10 @@ var createVote = function(req, res, next) {
     console.log('VOTE');
     console.log(savedVote);
     if (err) {
+      console.log(err);
       return res.send(503, err.message);
     }
-    io.sockets.in(savedVote.eventShortName).emit('vote', savedVote);
+    //io.sockets.in(savedVote.eventShortName).emit('vote', savedVote);
     return res.send(savedVote);
 
   });
