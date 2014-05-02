@@ -1,5 +1,9 @@
 $(document).ready(function() {
+  // Event Pages.
   if ($('h1.page-title').hasClass('event-title')) {
+    console.log(voteOptions);
+
+    // Socket stuff.
     var socket = io.connect();
     socket.on('connect', function() {
       console.log("Connected, lets sign-up for updates about votes for this event");

@@ -1,4 +1,8 @@
 extends layout
 
 block content
-  h1.page-title.event-title(data-event="#{eventShort}") #{title}
+
+  h1.page-title.event-title(data-event="#{eventObject.shortName}") #{eventObject.name}
+  #chart(style="min-width: 400px; height: 500px; margin: 0 auto")
+  script(type='text/javascript').
+    var voteOptions = !{JSON.stringify(eventObject.votingOptions)};

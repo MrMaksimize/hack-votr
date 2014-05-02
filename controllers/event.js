@@ -1,4 +1,5 @@
 var Event = require('../models/Event');
+var Vote = require('../models/Vote');
 
 var routes = {};
 var methods = {};
@@ -17,11 +18,11 @@ routes.getEvent = function(req, res) {
   var event_short = req.params.eventshort;
   console.log(event_short);
   Event.findOne({ shortName: event_short }).lean().exec(function(err, eventObject){
-    console.log(eventObject);
-    res.render('event', {
-      title: eventObject.name,
-      eventShort: eventObject.shortName
-    });
+    // Use Map Reduce here to get vote counts per option.
+    var renderObject = {};
+    eventObject.votingOptions = JSON.stringify(eventObject.votingOptions);
+    renderObject.eventObject = eventObject;
+    res.render('event', renderObject);
   });
 }
 
