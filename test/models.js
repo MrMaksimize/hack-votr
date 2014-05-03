@@ -44,7 +44,7 @@ describe('Vote Model', function() {
     var vote = new Vote(mocks.votes.simple);
     // Save it and let the model middlware populate what we don't know.
     vote.save(function(err, savedVote) {
-      err.code.should.equal(11000);
+      if (err) err.code.should.equal(11000);
       done();
     });
   });
@@ -53,7 +53,7 @@ describe('Vote Model', function() {
     var vote = new Vote(mocks.votes.uniqueInvalidOption);
     // Save it and let the model middlware populate what we don't know.
     vote.save(function(err, savedVote) {
-      err.message.should.equal('No option matches');
+      if (err) err.message.should.equal('No option matches');
       done();
     });
   });
@@ -62,7 +62,7 @@ describe('Vote Model', function() {
     var vote = new Vote(mocks.votes.uniqueNoEvent);
     // Save it and let the model middlware populate what we don't know.
     vote.save(function(err, savedVote) {
-      err.message.should.equal('No event matches');
+      if (err) err.message.should.equal('No event matches');
       done();
     });
 

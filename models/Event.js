@@ -9,7 +9,6 @@ var eventSchema = new mongoose.Schema({
   state: Boolean,
   // TODO phone # per event.
   votingOptions: [{
-    id: Number, // Number of vote option
     name: { type: String, lowercase: true }, // Name of vote option to display
   }]
   // OR votingOptions: []

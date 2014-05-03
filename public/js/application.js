@@ -12,5 +12,4 @@
 //= require lib/jquery-2.1.0.min
 //= require lib/bootstrap.min
 //= require lib/d3.v3.min.js
-//= require lib/c3.min.js
 //= require main

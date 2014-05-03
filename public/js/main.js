@@ -1,8 +1,8 @@
 $(document).ready(function() {
   // Event Pages.
   if ($('h1.page-title').hasClass('event-title')) {
-    console.log(voteOptions);
-
+    console.log(appData);
+    // http://bost.ocks.org/mike/bar/2/
     // Socket stuff.
     var socket = io.connect();
     socket.on('connect', function() {

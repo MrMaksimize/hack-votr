@@ -39,11 +39,9 @@ mocks.events = {
     phoneNumber: '+19164263342',
     state: true,
     votingOptions: [{
-      id: 0, // Number of vote option
       name: 'no', // Name of vote option to display
     },
     {
-      id: 1, // Number of vote option
       name: 'yes', // Name of vote option to display
     }]
   },
@@ -54,11 +52,9 @@ mocks.events = {
     phoneNumber: getUniqueStringOrNum(),
     state: true,
     votingOptions: [{
-      id: 0, // Number of vote option
       name: 'no', // Name of vote option to display
     },
     {
-      id: 1, // Number of vote option
       name: 'yes', // Name of vote option to display
     }]
   }

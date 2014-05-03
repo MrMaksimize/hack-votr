@@ -16,13 +16,16 @@ routes.index = function(req, res) {
 
 routes.getEvent = function(req, res) {
   var event_short = req.params.eventshort;
-  console.log(event_short);
   Event.findOne({ shortName: event_short }).lean().exec(function(err, eventObject){
     // Use Map Reduce here to get vote counts per option.
     var renderObject = {};
-    eventObject.votingOptions = JSON.stringify(eventObject.votingOptions);
     renderObject.eventObject = eventObject;
-    res.render('event', renderObject);
+    Vote.getVoteCountsForEvent(eventObject.shortName).exec(function(err, result){
+      if (err) console.log(err);
+      console.log(result);
+      renderObject.voteResults = result;
+      res.render('event', renderObject);
+    });
   });
 }
 

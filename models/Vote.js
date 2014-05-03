@@ -8,10 +8,7 @@ var voteSchema = new mongoose.Schema({
   _id: { type: String, unique:true, lowercase: true },
   type: { type: String, lowercase: true, default: 'vote'},
   voteBody: { type: String },
-  chosenOption: {
-    id: Number,
-    name: String
-  },
+  chosenOption: String,
   event_id: String,
   eventShortName: String,
   voterPhoneNumber: String,
@@ -47,12 +44,12 @@ voteSchema.pre('save', function(next) {
 
 function getSelectedVoteOption(vote, foundEvent) {
   var voteBody = S(vote.voteBody.toLowerCase()).trim().s;
-  var selectedOption = {};
-  selectedOption =  _.find(foundEvent.votingOptions, function(option) {
-    return S(voteBody).contains(option.name);
-  });
-
-  return selectedOption;
+  var selectedOption = {name: null};
+    selectedOption =  _.find(foundEvent.votingOptions, function(option) {
+      return S(voteBody).contains(option.name);
+    });
+  // ERROR HERE FOR UNKNOWN OPTIONS. @TODO
+  return selectedOption.name;
 }
 
 
@@ -61,5 +58,12 @@ if (process.env.NODE_ENV == 'production') {
 }
 
 var voteModel = mongoose.model('Vote', voteSchema);
+
+voteModel.getVoteCountsForEvent = function(eventShort) {
+  return voteModel.aggregate(
+    { $match: { eventShortName: 'event_2' } },
+    { $group: { _id: '$chosenOption', total: { $sum: 1 } } }
+  );
+}
 
 module.exports = voteModel;
