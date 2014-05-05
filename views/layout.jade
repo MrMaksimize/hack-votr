@@ -15,8 +15,11 @@ html
       // Data dump.
       // TODO -- how to put NOT put stuff here when not relevant?
       var appData = {};
-      appData.voteOptions = !{JSON.stringify(eventObject.votingOptions)};
-      appData.voteResults = !{JSON.stringify(voteResults)};
+      //if (typeof(eventObject) !== 'undefined') {
+        appData.eventObject = !{JSON.stringify(eventObject)};
+      //}
+      //if (typeof(voteResults) !== 'undefined')
+        appData.voteResults = !{JSON.stringify(voteResults)};
   body
     #wrap
       include partials/navigation
